@@ -27,6 +27,11 @@ function App() {
     { type: 'item', value: 'AWS', label: 'AWS' },
     { type: 'item', value: 'Google Cloud Platform', label: 'Google Cloud Platform' },
   ]
+  const integrationTechOptions = [
+    { type: 'item', value: 'REST', label: 'REST' },
+    { type: 'item', value: 'gRPC', label: 'gRPC' },
+  ]
+
   const payloadCountOptions = [
     { type: 'item', value: '1000', label: '1,000 points' },
     { type: 'item', value: '5000', label: '5,000 points' },
@@ -43,6 +48,7 @@ function App() {
 
   const [payloadCount, setPayloadCount] = useState(5000)
   const [isRunningPayload, setIsRunningPayload] = useState(false)
+  const [payloadError, setPayloadError] = useState(null)
   const [restHistoryMs, setRestHistoryMs] = useState(null)
   const [restHistoryKb, setRestHistoryKb] = useState(null)
   const [grpcHistoryMs, setGrpcHistoryMs] = useState(null)
@@ -50,6 +56,7 @@ function App() {
 
   const [rps, setRps] = useState(200000)
   const [cloudProvider, setCloudProvider] = useState('Azure')
+  const [integrationTech, setIntegrationTech] = useState('REST')
 
   useEffect(() => {
     try {
@@ -77,6 +84,7 @@ function App() {
 
   const runPayloadComparison = async () => {
     setIsRunningPayload(true)
+    setPayloadError(null)
     setRestHistoryMs(null)
     setRestHistoryKb(null)
     setGrpcHistoryMs(null)
@@ -104,6 +112,8 @@ function App() {
       t = performance.now()
       await streamGrpcPrices(grpcBase, payloadCount)
       setGrpcStreamMs(Math.round(performance.now() - t))
+    } catch (err) {
+      setPayloadError(err?.message || 'Request failed — are the backends running?')
     } finally {
       setIsRunningPayload(false)
     }
@@ -133,9 +143,16 @@ function App() {
 
     const adjRest = adjustForLatency(restHistoryMs)
     const adjGrpc = adjustForLatency(grpcHistoryMs)
-    if (adjGrpc >= adjRest) return null
 
-    const timeSavedPerRequestS = (adjRest - adjGrpc) / 1000
+    const isRestCurrent = integrationTech === 'REST'
+    const currentMs = isRestCurrent ? adjRest : adjGrpc
+    const targetMs = isRestCurrent ? adjGrpc : adjRest
+    const targetName = isRestCurrent ? 'gRPC' : 'REST'
+
+    if (targetMs >= currentMs) return null
+
+    const timeSavedMs = currentMs - targetMs
+    const timeSavedPerRequestS = timeSavedMs / 1000
     const secondsInYear = 365 * 24 * 3600
     const totalTimeSavedHours = (timeSavedPerRequestS * rps * secondsInYear) / 3600
 
@@ -148,7 +165,7 @@ function App() {
     const hourlyCost = cloudPricing[cloudProvider]?.[instanceType] || 0.768
     const annualCostSavings = totalTimeSavedHours * hourlyCost
 
-    return { timeSavedPerRequestMs: adjRest - adjGrpc, totalTimeSavedHours, annualCostSavings, instanceType }
+    return { timeSavedPerRequestMs: timeSavedMs, totalTimeSavedHours, annualCostSavings, instanceType, targetName }
   }
 
   const estimatedLatency = getEstimatedNetworkLatency()
@@ -176,8 +193,8 @@ function App() {
       )}
 
       <header className="hero">
-        <h1>REST vs gRPC Performance Lab</h1>
-        <p>Compare large-payload performance: REST/JSON versus gRPC/protobuf — both backed by the same .NET runtime on HTTP/2.</p>
+        <h1>Graftcode vs REST and gRPC Performance Lab</h1>
+        <p>Measure integration performance: Graftcode (no integration layer) versus REST/JSON and gRPC/protobuf — both backed by the same .NET runtime on HTTP/2.</p>
       </header>
 
       <section className="price-section">
@@ -238,6 +255,10 @@ function App() {
           </Button>
         </div>
 
+        {payloadError && (
+          <div className="payload-error" role="alert">{payloadError}</div>
+        )}
+
         <div className="summary">
           <div>{formatPayloadResult('REST (JSON)', restHistoryMs, restHistoryKb)}</div>
           <div>{formatPayloadResult('gRPC unary (protobuf)', grpcHistoryMs, null)}</div>
@@ -284,7 +305,7 @@ function App() {
 
       <section className="cost-savings">
         <h3>Cloud Cost Savings</h3>
-        <p>Estimate the annual compute savings from switching to gRPC based on the payload test results and your request volume.</p>
+        <p>Estimate the annual compute savings from switching technologies based on the payload test results and your request volume.</p>
 
         <div className="cost-controls">
           <div className="control-group">
@@ -305,6 +326,15 @@ function App() {
               onValueChange={setCloudProvider}
             />
           </div>
+          <div className="control-group">
+            <Select
+              id="integration-tech-select"
+              label="Current Integration Technology:"
+              value={integrationTech}
+              options={integrationTechOptions}
+              onValueChange={setIntegrationTech}
+            />
+          </div>
         </div>
 
         {(() => {
@@ -318,7 +348,7 @@ function App() {
           }
           return (
             <div className="cost-results">
-              <h4>Annual Cost Savings (REST → gRPC)</h4>
+              <h4>Annual Cost Savings ({integrationTech} → {savings.targetName})</h4>
               <div className="savings-breakdown">
                 <div className="savings-item">
                   <span className="label">Time saved per request:</span>
@@ -342,7 +372,7 @@ function App() {
                 </div>
               </div>
               <div className="savings-note">
-                <p><em>Based on {rps.toLocaleString()} RPS, {cloudProvider} {savings.instanceType} pricing, and measured REST vs gRPC performance difference{excludeNetworkLatency ? ' (network latency excluded)' : ''}.</em></p>
+                <p><em>Based on {rps.toLocaleString()} RPS, {cloudProvider} {savings.instanceType} pricing, and measured {integrationTech} vs {savings.targetName} performance difference{excludeNetworkLatency ? ' (network latency excluded)' : ''}.</em></p>
               </div>
             </div>
           )

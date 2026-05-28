@@ -5,7 +5,8 @@
   padding: 2rem 1.5rem;
 }
 
-.graft-error {
+.graft-error,
+.payload-error {
   padding: 1rem;
   background: #fef2f2;
   border: 1px solid #fecaca;
@@ -134,9 +135,9 @@
 .callout {
   margin-top: .25rem;
   padding: .75rem 1rem;
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  color: #14532d;
+  background: #fdf2f8;
+  border: 1px solid #f0abcf;
+  color: #831843;
   border-radius: 10px;
   text-align: center;
 }
@@ -212,19 +213,6 @@
   gap: 0.35rem;
 }
 
-.control-group label {
-  font-size: 0.9rem;
-  color: #4b5563;
-  font-weight: 600;
-}
-
-.control-group select {
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  padding: 0.5rem 0.6rem;
-  background: #fff;
-  color: #111827;
-}
 
 .cost-results {
   border: 1px solid #e5e7eb;
@@ -267,11 +255,11 @@
 
 .savings-item.highlight .label {
   font-weight: 700;
-  color: #14532d;
+  color: #9d174d;
 }
 
 .savings-item.highlight .value {
-  color: #14532d;
+  color: #9d174d;
 }
 
 .savings-note {
