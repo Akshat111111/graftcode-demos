@@ -22,7 +22,7 @@ param(
   [string]$Location         = 'eastus',
   [string]$EnvName          = 'graftcode-perf-env',
   [string]$AcrName          = "graftperf$((Get-Random -Maximum 99999))",  # must be globally unique
-  [string]$GraftProjectKey  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwMTllOTI0My05NTUwLTdjNWUtYTVlNC01Y2VkZjA4Y2ZkMTUiLCJnYXRld2F5X25hbWUiOiJjb2xkLWNlZGFyLWVsbSIsInBpZCI6IjAxOWQ5ZmFiLWI3YzAtNzNhZi04MzQ0LWQ2YjdhMmFlZjk3NyIsInByb2plY3RfbmFtZSI6Im1vY2tlZC15ZWxsb3dzdG9uZSIsImlhdCI6MTc4MDU3MDM2MywibmJmIjoxNzgwNTcwMzYzLCJleHAiOjE3OTYzODE1NjMsImlzcyI6ImdyYWZ0Y29kZS1nYXRld2F5IiwiYXVkIjoiZ3JhZnRjb2RlLWFwaSJ9.A58ctlk0NiBKqdHJb8uLgr6l8Wee4cgeoZLK8kffhZY'
+  [string]$GraftProjectKey  = '<paste_your_project_key_here>'
 )
 
 $ErrorActionPreference = 'Stop'
