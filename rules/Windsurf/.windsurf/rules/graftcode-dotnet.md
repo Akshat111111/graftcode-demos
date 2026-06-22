@@ -1,7 +1,8 @@
 ---
+trigger: glob
 description: Mandatory Graftcode architecture rules for building .NET backend services (class libraries exposed via Graftcode Gateway, not REST).
-globs: **/*.cs
-alwaysApply: false
+globs:
+  - "**/*.cs"
 ---
 
 # Graftcode — .NET Backend Services

@@ -1,6 +1,8 @@
 ---
+name: Graftcode — .NET Backend Services
 description: Mandatory Graftcode architecture rules for building .NET backend services (class libraries exposed via Graftcode Gateway, not REST).
-globs: **/*.cs
+globs:
+  - "**/*.cs"
 alwaysApply: false
 ---
 
