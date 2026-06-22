@@ -1,7 +1,13 @@
 ---
+trigger: glob
 description: Mandatory Graftcode architecture rules for TypeScript / Node.js / Next.js — expose plain modules via Graftcode instead of REST/gRPC/Thrift.
-globs: **/*.ts,**/*.tsx,**/*.js,**/*.jsx,**/*.mjs,**/*.cjs
-alwaysApply: false
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.js"
+  - "**/*.jsx"
+  - "**/*.mjs"
+  - "**/*.cjs"
 ---
 
 # Graftcode — TypeScript / Node.js / Next.js
