@@ -1,0 +1,1 @@
+A Python library for currency conversion using exchange rates

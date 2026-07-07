@@ -1,0 +1,84 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+.npmrc
+!.npmrc.example
+
+# Local TLS certificates (for HTTP/2 demo)
+certs/
+
+# .NET
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+publish/
+*.nuget.props
+*.nuget.g.props
+*.nuget.g.targets
+project.assets.json
+project.nuget.cache
+*.csproj.nuget.dgspec.json
+*.sourcelink.json
+PublishOutputs.*.txt
+FileListAbsolute.txt
+
+# Node
+node_modules/
+dist/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+venv/
+env/
+ENV/
+.pytest_cache/
+.coverage
+htmlcov/
+.currencyconverter/
+
+# Logs
+*.log
+logs/
+
+# Binary / build artefacts (electric-company-be)
+*.zip
+uploads/
+electric-company-be/Binaries/
+electric-company-be/GMA/
+electric-company-be/GVFE/
+_Hypertube*.txt
+
+# Stock portfolio tracker - exclude blog post
+stock portfolio tracker/blog_graftcode_stock_portfolio.md
+
+# Binary / build artefacts (graft tooling)
+Binaries/
+GMA/
+GVFE/
+perf-lab/Binaries/
+perf-lab/GMA/
+perf-lab/GVFE/

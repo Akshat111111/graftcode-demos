@@ -1,0 +1,7 @@
+services:
+  portfolio-tracker:
+    build: .
+    ports:
+      - "80:80"
+      - "81:81"
+    restart: unless-stopped
