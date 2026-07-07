@@ -1,7 +1,7 @@
 """
 Comprehensive unit tests for PortfolioTracker.
 
-Design constraints (per AGENTS.md):
+Design constraints:
 - pytest only
 - Fully offline — no network calls, no Docker dependency
 - Fast — pure in-memory operations
