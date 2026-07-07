@@ -50,12 +50,12 @@ Only Python stdlib. No Flask, FastAPI, Django, aiohttp, tornado, or any other HT
 
 ## Criterion 2 — Added Under Correct Path
 
-**Status: ✅ PASS** ⚠️ **Advisory note below**
+**Status: ✅ PASS** 
 
 **Location on disk:**
 ```
 c:\Users\Akshat\Desktop\Graftcode\graftcode-demos-main\graftcode-demos-main\
-└── stock portfolio tracker\          ← folder with spaces (as created by user)
+└── stock portfolio tracker\        
     ├── portfolio_tracker\
     ├── tests\
     ├── Dockerfile
@@ -67,11 +67,7 @@ c:\Users\Akshat\Desktop\Graftcode\graftcode-demos-main\graftcode-demos-main\
     └── AGENTS.md
 ```
 
-> [!NOTE]
-> The acceptance criteria and AGENTS.md specify the path as `graftcode-demo/stock-portfolio-tracker` (hyphens). The folder was created as `stock portfolio tracker` (spaces). Functionally identical — if you need to rename to use hyphens for Git/URL hygiene, run:
-> ```powershell
-> Rename-Item "stock portfolio tracker" "stock-portfolio-tracker"
-> ```
+
 
 ---
 
@@ -79,7 +75,7 @@ c:\Users\Akshat\Desktop\Graftcode\graftcode-demos-main\graftcode-demos-main\
 
 **Status: ✅ PASS**
 
-[README.md](file:///c:/Users/Akshat/Desktop/Graftcode/graftcode-demos-main/graftcode-demos-main/stock%20portfolio%20tracker/README.md) — **269 lines** covering all required sections:
+[README.md](file:///c:/Users/Akshat/Desktop/Graftcode/graftcode-demos-main/graftcode-demos-main/stock%20portfolio%20tracker/README.md) —  covering all required sections:
 
 | Required Section | Present |
 |---|---|
