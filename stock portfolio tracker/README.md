@@ -332,13 +332,7 @@ Click `update_price` → **"Try it out"** for each price update:
 
 Click each read method → **"Try it out"** → **"Run"**:
 
-| Method | Vision Output |
-|---|---|
-| `get_portfolio_value()` | `Result: 36000.0` |
-| `get_profit_loss()` | `Result: 2000.0` |
-| `get_percentage_return()` | `Result: ~5.71` |
-| `get_all_positions()` | List of all 3 position dicts |
-| `get_position_summary("AAPL")` | 7-key dict with all AAPL metrics |
+
 
 ![get_portfolio_value() executing live — Result: 3500 shown in the Output panel](docs/screenshots/06_get_portfolio_value.png)
 
