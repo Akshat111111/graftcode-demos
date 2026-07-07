@@ -26,6 +26,7 @@ electric-company-ws/       .NET 8 REST backend  (HTTP/2, /api/EnergyPrice/*)
 grpc-energy-price-dotnet/  .NET 8 gRPC backend  (HTTP/2, ASP.NET Core gRPC-Web)
 electric-company-be/       Original C# energy-price service (Graftcode host)
 sdn-currency-converter/    Python currency-converter demo
+stock portfolio tracker/   Python stock portfolio tracker demo (Graftcode MCP server)
 deploy-azure.ps1           One-shot Azure Container Apps deploy script
 ```
 
