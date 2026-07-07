@@ -8,7 +8,7 @@
 | # | Criterion | Status |
 |---|---|---|
 | 1 | Stock Portfolio Tracker implemented | ✅ PASS |
-| 2 | Added under `graftcode-demo/stock-portfolio-tracker` | ✅ PASS ⚠️ see note |
+| 2 | Added under `graftcode-demo/stock-portfolio-tracker` | ✅ PASS  |
 | 3 | README created | ✅ PASS |
 | 4 | Docker support added | ✅ PASS |
 | 5 | High Level Diagram and explanation | ✅ PASS |
